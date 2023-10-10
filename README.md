@@ -1,4 +1,4 @@
-# (Updating)FPPQ: Implementation of NIPS2023: Unleashing the Full Potential of Product Quantization for Large-Scale Image Retrieval
+# (Updating)Implementation of NIPS2023: Unleashing the Full Potential of Product Quantization for Large-Scale Image Retrieval
 
 **CODE UPDATING    !!!!**
 
