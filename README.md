@@ -1,6 +1,6 @@
 # (Updating)Implementation of NIPS2023: Unleashing the Full Potential of Product Quantization for Large-Scale Image Retrieval
 
-**CODE UPDATING （The current code is incomplete, We need some time to tidy up further and check correctness and completeness）   !!!!**
+**CODE UPDATING （The current code may be not complete yet, We need some time to tidy up further and check correctness and completeness）   !!!!**
 
 &emsp;[cisip-FIRe project](https://github.com/CISiPLab/cisip-FIRe)
 
