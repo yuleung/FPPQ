@@ -1,4 +1,4 @@
-# (Updating)Implementation of NIPS2023: Unleashing the Full Potential of Product Quantization for Large-Scale Image Retrieval
+# (2023-11-10  I will finish updating soon)Implementation of NIPS2023: Unleashing the Full Potential of Product Quantization for Large-Scale Image Retrieval
 
 **CODE UPDATING （The current code may be not complete yet, We need some time to tidy up further and check correctness and completeness）   !!!!**
 
