@@ -7,7 +7,7 @@ import torch
 from torch import distributed
 from losses import CosFace
 import losses
-from backbones import get_model_pqbranch
+from backbones import get_model_FPPQ
 from dataset import get_dataloader
 from torch.utils.data import DataLoader
 from lr_scheduler import PolyScheduler

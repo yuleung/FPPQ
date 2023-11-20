@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from torch import distributed
 import losses
-from backbones import get_model_ori
+from backbones import get_model
 from dataset import get_dataloader
 from torch.utils.data import DataLoader
 from lr_scheduler import PolyScheduler
