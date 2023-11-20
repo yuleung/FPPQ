@@ -14,7 +14,6 @@ from utils.utils_config import get_config
 
 def main(args):
     cfg = get_config(args.config)
-    # feature_root = #f'./feature_save/R50_'
     feature_root = f'{cfg.output}/feature_saved/'
     p_features = preprocessing.normalize(np.load(feature_root + 'facecrub_data_feature_total_not_nor.npy'))
     p_labels_ori = np.load(feature_root + 'facecrub_label_total.npy').tolist()
@@ -86,7 +85,7 @@ def main(args):
     if not os.path.exists(save_path):
         os.mkdir(save_path)
 
-    with open(f'{save_path}/log_ce_pq_L2_Fn.txt', 'a+') as f:
+    with open(f'{save_path}/log_pq_L2_Fn.txt', 'a+') as f:
         f.write('nor_L2: \n')
         f.write('top1:  ' + str(acc1_avg) + '\n')
         f.write('top2:  ' + str(acc2_avg) + '\n')
