@@ -12,7 +12,7 @@ from torch.utils.data import DataLoader
 from backbones import new_get_model
 from dataset import get_dataloader
 from utils.utils_config import get_config
-from utils.utils_logging import init_logging
+
 
 try:
     world_size = int(os.environ["WORLD_SIZE"])
@@ -55,7 +55,7 @@ def main(args):
         num_space = 25 - len(key)
         logging.info(": " + key + " " * num_space + str(value))
 
-    save_path = cfg.output + '/feature_save/'
+    save_path = './feature_save/'
     if not os.path.exists(save_path):
         os.mkdir(save_path)
 
@@ -77,11 +77,11 @@ def main(args):
 
         feature_total = np.array(list(np.vstack(np.array(epoch_feature[:-1]))) + list(np.array(epoch_feature[-1])))
         print('feature_total.shape:', feature_total.shape)
-        np.save(save_path + f'./{cfg.network}glink360_data_feature_total_nor.npy', preprocessing.normalize(feature_total))
+        np.save(save_path + f'./{cfg.network}_glint360k_data_feature_total_nor.npy', preprocessing.normalize(feature_total))
 
         label_total = np.array(list(np.hstack(np.array(epoch_label[:-1]))) + list(np.array(epoch_label[-1])))
         print('label_total.shape:', label_total.shape)
-        np.save(save_path + f'./{cfg.network}_glink360_label_total.npy', label_total)
+        np.save(save_path + f'./{cfg.network}_glint360k_label_total.npy', label_total)
     distributed.destroy_process_group()
 
 
