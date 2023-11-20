@@ -1,6 +1,6 @@
-# (2023-11-10  I will finish updating soon)Implementation of NIPS2023: Unleashing the Full Potential of Product Quantization for Large-Scale Image Retrieval
+# (2023-11-20)Implementation of NIPS2023: Unleashing the Full Potential of Product Quantization for Large-Scale Image Retrieval
 
-**CODE UPDATING （The current code may be not complete yet, We need some time to tidy up further and check correctness and completeness）   !!!!**
+**CODE UPDATING （The current code is the implementation in glint360k. The training pipeline has been shown in run.sh and I will upload the pretrained weights and the PQ-code label soon.)**
 
 &emsp;[cisip-FIRe project](https://github.com/CISiPLab/cisip-FIRe)
 
