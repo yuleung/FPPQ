@@ -14,7 +14,7 @@ current_dir = os.getcwd()
 sys.path.append(current_dir)
 print(current_dir)
 from dataset import DataLoaderX
-from backbones import get_model
+from backbones import get_model_FPPQ
 from utils.utils_config import get_config
 from utils.utils_logging import init_logging
 
@@ -73,7 +73,7 @@ def main(args):
     train_loader = DataLoaderX(local_rank=0, dataset=train_set, batch_size=50, sampler=train_sampler, num_workers=8,
                                pin_memory=True, drop_last=False)
 
-    backbone = get_model(
+    backbone = get_model_FPPQ(
         cfg.network, dropout=0.0, fp16=cfg.fp16, num_features=cfg.embedding_size, pq=cfg.pq, Wnor=cfg.Fnor,
         Fnor=cfg.Fnor).cuda()
 
@@ -82,7 +82,7 @@ def main(args):
     backbone_pth = f"{cfg.output}/training/model.pt"
     print(backbone_pth)
     backbone.load_state_dict(torch.load(backbone_pth, map_location=torch.device(0)))  # ['state_dict_backbone'])
-    print('loaded!')
+    print('backbone loaded!')
     backbone = torch.nn.parallel.DistributedDataParallel(
         module=backbone, broadcast_buffers=False, device_ids=[args.local_rank], bucket_cap_mb=16,
         find_unused_parameters=True)

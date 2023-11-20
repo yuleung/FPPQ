@@ -11,7 +11,7 @@ from torchvision import transforms
 import torch.nn.functional as F
 
 from dataset import DataLoaderX
-from backbones import new_get_model
+from backbones import get_model_FPPQ
 from utils.utils_config import get_config
 from utils.utils_logging import init_logging
 current_dir = os.getcwd()
@@ -81,14 +81,14 @@ def main(args):
         local_rank=0, dataset=train_set, batch_size=BSize,
         sampler=train_sampler, num_workers=2, pin_memory=True, drop_last=False)
 
-    backbone = new_get_model(
+    backbone = get_model_FPPQ(
         cfg.network, dropout=0.0, fp16=cfg.fp16, num_features=cfg.embedding_size, pq=cfg.pq, Wnor=cfg.Fnor,
         Fnor=cfg.Fnor).cuda()
 
     backbone = backbone.cuda()
     backbone_pth = f"{cfg.output}/training/model.pt"
     backbone.load_state_dict(torch.load(backbone_pth, map_location=torch.device(0)))  # ['state_dict_backbone'])
-    print('loaded!')
+    print('backbone loaded!')
     backbone = torch.nn.parallel.DistributedDataParallel(
         module=backbone, broadcast_buffers=False, device_ids=[args.local_rank], bucket_cap_mb=16,
         find_unused_parameters=True)
@@ -103,15 +103,13 @@ def main(args):
         os.mkdir(save_path)
     if not cfg.orinetwork and rank == 0:
         for name, param in backbone.named_parameters():
-            print(name)
             if name == 'module.PQ_branch.weight':
                 np.save(save_path + 'tail_weight.npy', param.detach().cpu().numpy())
 
     global_step = 0
     epoch_label = []
     epoch_feature = []
-    if not cfg.orinetwork:
-        soft_PQ_index_array = []
+
     for epoch in range(1):
         if isinstance(train_loader, DataLoader):
             train_loader.sampler.set_epoch(epoch)

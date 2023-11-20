@@ -82,7 +82,7 @@ def main(args):
     backbone_pth = f"{cfg.output}/training/model.pt"
     print(backbone_pth)
     backbone.load_state_dict(torch.load(backbone_pth, map_location=torch.device(0)))  # ['state_dict_backbone'])
-    print('loaded!')
+    print('backbone loaded!')
     backbone = torch.nn.parallel.DistributedDataParallel(
         module=backbone, broadcast_buffers=False, device_ids=[args.local_rank], bucket_cap_mb=16,
         find_unused_parameters=True)
