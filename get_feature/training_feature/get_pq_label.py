@@ -64,13 +64,15 @@ def Move_overlap(pq_centroids, features, pq_code, pq=4, seg_class_num=256):
         feature = features[index[idx]]
         dis_v = []
         sub_len = len(feature) // pq
+
+        #Calculate the distance between seg-th sub-feature and seg-th codebook
         for seg in range(pq):
             sub_f = feature[seg * sub_len: (seg + 1) * sub_len]
             sub_c = pq_centroids[seg]
             sub_dis = np.sum(np.square(sub_c - sub_f), axis=1)
             dis_v += list(sub_dis)
 
-        # all dis index from small to large
+        # All distance index from small to large
         dis_v_arg = np.argsort(np.array(dis_v))
 
         # Op of move overlap
@@ -78,15 +80,15 @@ def Move_overlap(pq_centroids, features, pq_code, pq=4, seg_class_num=256):
         count = 0
 
         while guard:
-            for _ in dis_v_arg:
-                temp_item = copy.deepcopy(item)
-                if str(temp_item) not in dic:
-                    guard = 0
-                    dic[str(temp_item)] = 0
-                    break
+            #for _ in dis_v_arg:
+            temp_item = copy.deepcopy(item)
+            if str(temp_item) not in dic:
+                guard = 0
+                dic[str(temp_item)] = 0
+                break
             if guard == 1:
-                count += 1
                 item[int(dis_v_arg[count] // seg_class_num)] = int(dis_v_arg[count] % seg_class_num)
+                count += 1
                 dis_v_arg = dis_v_arg[count:]
         pq_code[index[idx]] = temp_item
     return pq_code
