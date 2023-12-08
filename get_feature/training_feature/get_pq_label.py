@@ -4,6 +4,8 @@ import faiss
 import numpy as np
 import argparse
 
+print('The move overlap code has some questions because of the upload error, we will fix it soon.')
+'''
 def get_avg_feature(data, o_label):
     sort_index = np.argsort(o_label)
     print('sorted')
@@ -142,4 +144,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="get_pq_label")
     parser.add_argument("--prefix", type=str, default='r50', help="backbone")
     main(parser.parse_args())
-
+'''
