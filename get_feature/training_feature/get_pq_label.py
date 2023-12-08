@@ -4,7 +4,7 @@ import faiss
 import numpy as np
 import argparse
 
-print('The move overlap code has some questions because of the upload error, we will fix it soon.')
+print('The code to move-overlap-pq has some questions because of the upload error, we will fix it soon.')
 '''
 def get_avg_feature(data, o_label):
     sort_index = np.argsort(o_label)
