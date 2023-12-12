@@ -79,22 +79,40 @@ def Move_overlap(pq_centroids, features, pq_code, pq=4, seg_class_num=256):
 
         # Op of move overlap
         guard = 1
-        count = 0
 
-        while guard:
-            #for _ in dis_v_arg:
-            temp_item = copy.deepcopy(item)
-            if str(temp_item) not in dic:
-                guard = 0
-                dic[str(temp_item)] = 0
-                break
-            if guard == 1:
-                item[int(dis_v_arg[count] // seg_class_num)] = int(dis_v_arg[count] % seg_class_num)
-                count += 1
-                dis_v_arg = dis_v_arg[count:]
-        pq_code[index[idx]] = temp_item
+        #We can use the queue to generate the next pq-code to be selected in the form of a generator.  
+        #This code changes the encoding of at most two segments, but can be applied to almost any situation
+        Queue_template = []                                                                                                                                         
+        for i in range(len(dis_v_arg)-1):                                                                                                                           
+            Queue_template.append([i, i+1])                                                                                                                         
+        Queue = Queue_template                                                                                                                                      
+        #print('item:',item)                                                                                                                                        
+        while guard:                                                                                                                                                
+            #pop the index has min dis                                                                                                                              
+            min_dis_index = Queue.pop(0)                                                                                                                            
+            ind1 = dis_v_arg[min_dis_index[0]]                                                                                                                      
+            ind2 = dis_v_arg[min_dis_index[1]]                                                                                                                      
+            temp_item = copy.deepcopy(item)                                                                                                                         
+            temp_item[int(ind1//seg_class_num)] = int(ind1 % seg_class_num)                                                                                         
+            temp_item[int(ind2//seg_class_num)] = int(ind2 % seg_class_num)                                                                                         
+            if str(temp_item) not in dic:                                                                                                                           
+                #print(f'1temp_item: {temp_item}')                                                                                                                  
+                dic[str(temp_item)] = 0                                                                                                                             
+                break                                                                                                                                               
+            nex_item_index1 = min_dis_index[0]                                                                                                                      
+            if min_dis_index[1] != 256 - 1:                                                                                                                         
+                nex_item_index2 = min_dis_index[1] + 1                                                                                                              
+                                                                                                                                                                    
+            #next index pair insert to Queue                                                                                                                        
+            nex_item_dis = dis_v[nex_item_index1] + dis_v[nex_item_index2]                                                                                          
+            for Q in range(len(Queue)):                                                                                                                             
+                if nex_item_dis < dis_v[dis_v_arg[Queue[Q][0]]] + dis_v[dis_v_arg[Queue[Q][1]]]:                                                                    
+                    Queue = Queue[:Q] + [[nex_item_index1, nex_item_index2]] + Queue[Q:]                                                                            
+                    break                                                                                                                                           
+        #result = temp_item                                                                                                                                         
+        #print(temp_item)                                                                                                                                           
+        pq_code[index[idx]] = temp_item                                                                                                                             
     return pq_code
-
 
 def get_pq(data_avg, dim, pq, bit):
     index = faiss.IndexPQ(dim, pq, bit)
