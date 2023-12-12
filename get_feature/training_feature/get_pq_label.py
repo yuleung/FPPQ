@@ -4,8 +4,8 @@ import faiss
 import numpy as np
 import argparse
 
-print('The code to move-overlap-pq has some problems because of the upload error, we will fix it soon.')
-'''
+#print('The code to move-overlap-pq has some problems because of the upload error, we will fix it soon.')
+
 def get_avg_feature(data, o_label):
     sort_index = np.argsort(o_label)
     print('sorted')
@@ -100,7 +100,7 @@ def Move_overlap(pq_centroids, features, pq_code, pq=4, seg_class_num=256):
                 dic[str(temp_item)] = 0                                                                                                                             
                 break                                                                                                                                               
             nex_item_index1 = min_dis_index[0]                                                                                                                      
-            if min_dis_index[1] != 256 - 1:                                                                                                                         
+            if min_dis_index[1] != seg_class_num - 1:                                                                                                                         
                 nex_item_index2 = min_dis_index[1] + 1                                                                                                              
                                                                                                                                                                     
             #next index pair insert to Queue                                                                                                                        
