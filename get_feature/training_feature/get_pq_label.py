@@ -4,8 +4,6 @@ import faiss
 import numpy as np
 import argparse
 
-#print('The code to move-overlap-pq has some problems because of the upload error, we will fix it soon.')
-
 def get_avg_feature(data, o_label):
     sort_index = np.argsort(o_label)
     print('sorted')
@@ -85,8 +83,7 @@ def Move_overlap(pq_centroids, features, pq_code, pq=4, seg_class_num=256):
         Queue_template = []                                                                                                                                         
         for i in range(len(dis_v_arg)-1):                                                                                                                           
             Queue_template.append([i, i+1])                                                                                                                         
-        Queue = Queue_template                                                                                                                                      
-        #print('item:',item)                                                                                                                                        
+        Queue = Queue_template                                                                                                                                                                                                                                                                            
         while guard:                                                                                                                                                
             #pop the index has min dis                                                                                                                              
             min_dis_index = Queue.pop(0)                                                                                                                            
@@ -108,8 +105,7 @@ def Move_overlap(pq_centroids, features, pq_code, pq=4, seg_class_num=256):
             for Q in range(len(Queue)):                                                                                                                             
                 if nex_item_dis < dis_v[dis_v_arg[Queue[Q][0]]] + dis_v[dis_v_arg[Queue[Q][1]]]:                                                                    
                     Queue = Queue[:Q] + [[nex_item_index1, nex_item_index2]] + Queue[Q:]                                                                            
-                    break                                                                                                                                           
-        #result = temp_item                                                                                                                                         
+                    break                                                                                                                                                                                                                                                                                  
         #print(temp_item)                                                                                                                                           
         pq_code[index[idx]] = temp_item                                                                                                                             
     return pq_code
