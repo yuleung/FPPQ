@@ -128,8 +128,8 @@ def get_pq(data_avg, dim, pq, bit):
 def main(args):
     prefix = args.prefix
     save_path = './feature_save/'
-    data = np.load(f'{save_path} + {prefix}_glint360k_data_feature_total_nor.npy')
-    o_label = np.load(f'{save_path} + {prefix}_glint360k_label_total.npy')
+    data = np.load(f'{save_path}' + f'{prefix}_glint360k_data_feature_total_nor.npy')
+    o_label = np.load(f'{save_path}' + f'{prefix}_glint360k_label_total.npy')
 
     avg_feature = get_avg_feature(data, o_label)
     np.save(f'{save_path} + {prefix}_glint360k_avg_feature.npy', avg_feature)
@@ -158,4 +158,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="get_pq_label")
     parser.add_argument("--prefix", type=str, default='r50', help="backbone")
     main(parser.parse_args())
-'''
+
