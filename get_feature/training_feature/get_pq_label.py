@@ -142,17 +142,19 @@ def main(args):
     pq = 4
     bit = 8
     pq4_code = get_pq(avg_feature, dim, pq, bit)
-    np.save(f'{save_path} + {prefix}_glint360k_PQ{pq}_nbit{pq * bit}_no_ovelap.npy', pq4_code)
+    np.save(save_path + f'{prefix}_glint360k_PQ{pq}_nbit{pq * bit}_no_ovelap.npy', pq4_code)
+    print('PQ4 Label, Done!')
     pq = 8
     bit = 8
     pq8_code = get_pq(avg_feature, dim, pq, bit)
-    np.save(f'{save_path} + {prefix}_glint360k_PQ{pq}_nbit{pq * bit}_no_ovelap.npy', pq8_code)
+    np.save(save_path + f'{prefix}_glint360k_PQ{pq}_nbit{pq * bit}_no_ovelap.npy', pq8_code)
+    print('PQ8 Label, Done!')
     pq = 16
     bit = 8
     pq16_code = get_pq(avg_feature, dim, pq, bit)
-    np.save(f'{save_path} + {prefix}_glint360k_PQ{pq}_nbit{pq * bit}_no_ovelap.npy', pq16_code)
-
-    print('PQ Label Got!  Done!')
+    np.save(save_path + f'{prefix}_glint360k_PQ{pq}_nbit{pq * bit}_no_ovelap.npy', pq16_code)
+    print('PQ16 Label, Done!')
+    print('PQ Label Got! ')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="get_pq_label")
