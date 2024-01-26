@@ -1,7 +1,7 @@
 Implementation of NIPS2023: 
 Unleashing the Full Potential of Product Quantization for Large-Scale Image Retrieval
 
-The current code is the implementation on Glint360k. The training pipeline has been shown in run.sh, and will get the similar result(due to different GPUs, drivers, etc).
+The current code is the implementation on Glint360k. The training pipeline has been shown in run.sh, and will get the similar results(depends on different GPUs, drivers, etc).
 Moreover,  We will upload the pretrained weights and the PQ-code label soon.
 
 &emsp;[cisip-FIRe project](https://github.com/CISiPLab/cisip-FIRe)
