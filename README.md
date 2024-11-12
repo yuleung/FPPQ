@@ -53,6 +53,6 @@ Moreover,  We will upload the pretrained weights and the PQ-code label soon.
 ```
 
 ## Pretrained Model
-&emsp;Pretrained iResnet18、iResnet50、iResnet100 in Glint360K: [here-uploading]
+&emsp;Pretrained weights of iResnet18、iResnet50、iResnet100 in Glint360K, and the corresponding PQ labels: [Baidu cloud](https://pan.baidu.com/s/1kC0xkHYQL7FamoQ_rjyeJQ) Key：FPPQ
 
 &emsp;Pretrained Resnet50 in Imagenet1K: [here](https://download.pytorch.org/models/resnet50-19c8e357.pth)
